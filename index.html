@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="module" src="js/app.js" defer></script>
+  <title>Anotador de Puntos</title>
+</head>
+
+<body>
+  <!-- Contenedor Principal -->
+  <main class="container">
+
+      
+
+    <ul class="ul">
+      <li class="li activo">Contador Tradicional</li>
+      <li class="li">Contador Digital</li>
+    </ul>
+
+
+    <!-- Botón de Reset -->
+    <button id="reset" class="container__button" type="reset">Reset</button>
+
+    <div class="subcontainer">
+
+      <!-- Contenedor de Puntos Tradicional-->
+      <div id="jugadoresContainer" class="bloque jugadoresContainer activo">
+  
+        <!-- Secciones -->
+
+          <!-- Jugador 1 -->
+        <section id="jugador1" class="jugadorContainer">
+          <div class="buttons">
+            <button class="agregar jugadorContainer__button">+</button>
+            <button class="restar jugadorContainer__button">-</button>
+          </div>
+  
+          <h2 class="jugadorContainer__title"></h2>
+          <div class="account"></div>
+        </section>
+
+          <!-- Jugador 2 -->
+        <section id="jugador2" class="jugadorContainer">
+          <div class="buttons">
+            <button class="agregar jugadorContainer__button">+</button>
+            <button class="restar jugadorContainer__button">-</button>
+          </div>
+          <h2 class="jugadorContainer__title"></h2>
+          <div class="account"></div>
+        </section>
+      </div>
+
+      <!-- Contenedor de Puntos Digital-->
+      <div class="bloque jugadoresContainer">
+
+      <!-- Secciones -->
+        <!-- Jugador 1 -->
+        <section id="jugador3" class="jugadorContainerDigital">
+          <div class="display">0</div>
+
+          <div class="buttons">
+            <button class="incrementar agregar jugadorContainer__button">+</button>
+            <button class="decrementar restar jugadorContainer__button">-</button>
+          </div>
+  
+          <h2 class="jugadorContainer__title"></h2>
+          
+        </section>
+
+        <!-- Jugador 2 -->
+        <section id="jugador4" class="jugadorContainerDigital">
+          <div class="display1">0</div>
+          <div class="buttons">
+            <button class="incrementar2 agregar jugadorContainer__button">+</button>
+            <button class="decrementar2 restar jugadorContainer__button">-</button>
+          </div>
+          <h2 class="jugadorContainer__title"></h2>
+        </section>
+      </div>
+      </div>
+    </div>
+  
+  </main>
+</body>
+
+</html>

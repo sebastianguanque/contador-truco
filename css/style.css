@@ -1,0 +1,228 @@
+/* Estilos Generales */
+:root {
+  --top-vertical: 0px;
+  --left-horizontal: 32px;
+  --dimensiones-grupo: 70px;
+}
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, Roboto, sans-serif;
+  color: #fff;
+  user-select: none;
+}
+
+body {
+  background-image: url('../img/fondo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 900px;
+}
+
+
+
+/* Contenedor Principal */
+.container {
+  width: auto;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.ul {
+  width: 50%;
+  color: white;
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
+}
+
+.li {
+  padding-top: 1em;
+  list-style: none;
+  transition: .3s;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  text-align: center;
+  
+}
+.li.activo {
+  background-color: black;
+  color: white;
+}
+
+.subcontainer {
+  position: relative;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bloque {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+}
+
+.bloque.activo {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Contenedor de Puntos */
+
+.jugadoresContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* Secciones */
+
+.jugadorContainer {
+  background-color: transparent;
+  backdrop-filter: blur(30px);
+  border-radius: 20px;
+  width: 200px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.jugadorContainerDigital {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  align-items: center;
+}
+.display, .display1 {
+  background-color: #fff;
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  color: black;
+  display: grid;
+  place-items: center;
+  font-size: 3.5em;
+}
+
+.jugadorContainer__button {
+  min-width: 60px;
+  background-color: #835c3e;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid white;
+  padding: .5rem;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 1.5rem;
+  font-weight: bolder;
+
+}
+.jugadorContainer__button:hover {
+  border: 1px solid rgba(255, 255, 255, 0.458);
+}
+
+.jugadorContainer__title {
+  color: white;
+}
+
+/* Botón de Reset */
+.container__button, .li {
+  margin: 2rem 0;
+  padding: .5rem 3rem;
+  cursor: pointer;
+  color: white;
+  background-color: #835c3e;
+  border: 1px solid white;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.container__button:active, .jugadorContainer__button:active{
+  transform: scale(.95);
+}
+
+
+/* Fosforos */
+.grupo {
+  position: relative;
+  width: var(--dimensiones-grupo);
+  height: var(--dimensiones-grupo);
+  margin: 10px;
+  right: 20px;
+}
+img {
+  height: var(--dimensiones-grupo)
+}
+.fosforo-1 {
+  position: absolute;
+  transform: rotate(90deg);
+  top: -30px;
+  left: var(--left-horizontal);
+}
+
+.fosforo-2 {
+  position: absolute;
+  transform: rotate(180deg);
+  left: 65px;
+  top: var(--top-vertical);
+}
+
+.fosforo-3 {
+  position: absolute;
+  transform: rotate(270deg);
+  top: 32px;
+  left: var(--left-horizontal);
+}
+
+.fosforo-4 {
+  position: absolute;
+  left: 0px;
+  top: var(--top-vertical);
+}
+
+.fosforo-5 {
+  position: absolute;
+  transform: rotate(45deg);
+  left: 34px;
+  top: 0px;
+}
+
+/* Separador */
+.separador {
+  border: 1px solid black;
+  width: 80px;
+  margin: 5px;
+  
+}
+
+@media screen and (max-width: 500px) {
+  .li {
+    font-size: 1rem;
+    padding: .5em 1.5em;
+  }
+  .jugadorContainer {
+    width: 150px;
+  }
+
+  .jugadorContainerDigital {
+    width: 150px;
+  }
+  .display, .display1 {
+    width: 150px;
+    height: 100px;
+  }
+}
