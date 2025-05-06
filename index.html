@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="img/favicon.avif" type="image/x-icon" />
+    <link rel="stylesheet" href="public/css/style2.css" />
+
+    <script src="src/confetti.js" defer></script>
+
+    <script src="public/bundle.js" defer></script>
+    <title>Contador de Truco</title>
+  </head>
+
+  <body>
+    <!-- Contenedor Principal -->
+    <main class="container">
+      <ul class="ul">
+        <li class="li activo">Contador Tradicional</li>
+        <li class="li">Contador Digital</li>
+      </ul>
+
+      <!-- Botón de Reset -->
+      <button id="reset" class="container__button" type="reset">Reset</button>
+
+      <div class="subcontainer">
+        <!-- Contenedor de Puntos Tradicional-->
+        <div
+          id="jugadoresContainer"
+          class="bloque jugadoresContainer activo"
+          aria-hidden="false"
+        >
+          <!-- Secciones -->
+
+          <!-- Jugador 1 -->
+          <section id="jugador1" class="jugadorContainer">
+            <div class="buttons">
+              <button class="agregar jugadorContainer__button">+</button>
+              <button class="restar jugadorContainer__button">-</button>
+            </div>
+
+            <h2 class="jugadorContainer__title"></h2>
+            <div class="account"></div>
+          </section>
+
+          <div class="line-div-vertical"></div>
+          <div class="line-div-horizontal"></div>
+
+          <!-- Jugador 2 -->
+          <section id="jugador2" class="jugadorContainer">
+            <div class="buttons">
+              <button class="agregar jugadorContainer__button">+</button>
+              <button class="restar jugadorContainer__button">-</button>
+            </div>
+            <h2 class="jugadorContainer__title"></h2>
+            <div class="account"></div>
+          </section>
+        </div>
+
+        <!-- Contenedor de Puntos Digital-->
+        <div class="bloque jugadoresContainer" aria-hidden="true">
+          <!-- Secciones -->
+          <!-- Jugador 1 -->
+          <section id="jugador3" class="jugadorContainerDigital">
+            <div class="display">0</div>
+
+            <div class="buttons">
+              <button class="incrementar agregar jugadorContainer__button">
+                +
+              </button>
+              <button class="decrementar restar jugadorContainer__button">
+                -
+              </button>
+            </div>
+
+            <h2 class="jugadorContainer__title"></h2>
+          </section>
+
+          <!-- Jugador 2 -->
+          <section id="jugador4" class="jugadorContainerDigital">
+            <div class="display1">0</div>
+            <div class="buttons">
+              <button class="incrementar2 agregar jugadorContainer__button">
+                +
+              </button>
+              <button class="decrementar2 restar jugadorContainer__button">
+                -
+              </button>
+            </div>
+            <h2 class="jugadorContainer__title"></h2>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal PopUp -->
+
+    <dialog class="dialog">
+      <button class="btn-close">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path
+            d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"
+          ></path>
+        </svg>
+      </button>
+      <div class="dialog__texts">
+        <p class="dialog__victoria">¡Victoria!</p>
+        <p class="dialog__title">El juego ha finalizado.</p>
+      </div>
+    </dialog>
+  </body>
+</html>
