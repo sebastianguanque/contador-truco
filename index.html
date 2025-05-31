@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contador de Truco</title>
+    <link rel="shortcut icon" href="public/img/favicon.avif" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+
+        <!-- Scripts -->
+        <script src="confetti.js" defer></script>
+        <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Contenedor Principal -->
+    <main class="container">
+      <ul class="ul">
+        <li class="li activo">Contador Tradicional</li>
+        <li class="li">Contador Digital</li>
+      </ul>
+
+      <!-- Contador de Chicos Mejorado -->
+      <div class="chicos-container">
+        <div class="chicos-display">
+          <div class="chico-team">
+            <div class="chico-label">Nosotros</div>
+            <div class="chico-badge chico-nosotros">
+              <span id="chicos-j1">0</span>
+            </div>
+          </div>
+          
+          <div class="chicos-info">
+            <div class="partida-info">Partida al mejor de 3</div>
+            <button id="reset" class="reset-partida-btn">Reset Partida</button>
+          </div>
+          
+          <div class="chico-team">
+            <div class="chico-label">Ellos</div>
+            <div class="chico-badge chico-ellos">
+              <span id="chicos-j2">0</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Indicador de ganador del chico -->
+        <div id="chico-ganado" class="chico-ganado-indicator" style="display: none;">
+          <div class="chico-ganado-text">¡Chico ganado!</div>
+          <div id="chico-ganador-nombre" class="chico-ganador-nombre"></div>
+        </div>
+      </div>
+
+      <!-- Botón de Reset
+      <button id="reset" class="container__button" type="reset">Reset</button> -->
+
+      <div class="subcontainer">
+        <!-- Contenedor de Puntos Tradicional-->
+        <div
+          id="jugadoresContainer"
+          class="bloque jugadoresContainer activo"
+          aria-hidden="false"
+        >
+          <!-- Secciones -->
+
+          <!-- Jugador 1 -->
+          <section id="jugador1" class="jugadorContainer">
+            <div class="buttons">
+              <button class="agregar jugadorContainer__button">+</button>
+              <button class="restar jugadorContainer__button">-</button>
+            </div>
+
+            <h2 class="jugadorContainer__title">Nosotros</h2>
+            <div class="account"></div>
+          </section>
+
+          <div class="line-div-vertical"></div>
+          <div class="line-div-horizontal"></div>
+
+          <!-- Jugador 2 -->
+          <section id="jugador2" class="jugadorContainer">
+            <div class="buttons">
+              <button class="agregar jugadorContainer__button">+</button>
+              <button class="restar jugadorContainer__button">-</button>
+            </div>
+            <h2 class="jugadorContainer__title">Ellos</h2>
+            <div class="account"></div>
+          </section>
+        </div>
+
+        <!-- Contenedor de Puntos Digital-->
+        <div class="bloque jugadoresContainer" aria-hidden="true">
+          <!-- Secciones -->
+          <!-- Jugador 1 -->
+          <section id="jugador3" class="jugadorContainerDigital">
+            <div class="display">0</div>
+
+            <div class="buttons">
+              <button class="incrementar agregar jugadorContainer__button">
+                +
+              </button>
+              <button class="decrementar restar jugadorContainer__button">
+                -
+              </button>
+            </div>
+
+            <h2 class="jugadorContainer__title">Nosotros</h2>
+          </section>
+
+          <!-- Jugador 2 -->
+          <section id="jugador4" class="jugadorContainerDigital">
+            <div class="display1">0</div>
+            <div class="buttons">
+              <button class="incrementar2 agregar jugadorContainer__button">
+                +
+              </button>
+              <button class="decrementar2 restar jugadorContainer__button">
+                -
+              </button>
+            </div>
+            <h2 class="jugadorContainer__title">Ellos</h2>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal PopUp -->
+    <dialog class="dialog">
+      <button class="btn-close">×</button>
+      <div class="dialog__texts">
+        <p class="dialog__victoria" id="mensaje-final">¡Victoria!</p>
+        <p class="dialog__title">El juego ha finalizado.</p>
+        <div class="confetti-container"></div>
+      </div>
+    </dialog>
+
+
+  </body>
+</html>

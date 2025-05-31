@@ -1,0 +1,578 @@
+/* Estilos Generales */
+:root {
+  --top-vertical: 0px;
+  --left-horizontal: 32px;
+  --dimensiones-grupo: 70px;
+  --color-fondo: rgb(30, 30, 30);
+  --color-primario: rgb(0, 0, 0);
+  --color-secundario: rgb(255, 255, 255);
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, Roboto, sans-serif;
+  color: #fff;
+  user-select: none;
+  outline: none;
+}
+
+textarea,
+select,
+input,
+button {
+  outline: none;
+}
+
+:focus {
+  outline-color: transparent;
+  outline-style: none;
+}
+
+body {
+  background-color: var(--color-fondo);
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.line-div-vertical {
+  position: absolute;
+  width: 1px;
+  height: 580px;
+  background-color: var(--color-secundario);
+}
+
+.line-div-horizontal {
+  position: absolute;
+  top: -90px;
+  width: 1px;
+  height: min(350px, 100vh);
+  background-color: var(--color-secundario);
+  transform: rotate(90deg);
+}
+
+/* Contenedor Principal */
+.container {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ul {
+  width: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
+}
+
+.li {
+  padding-top: 1em;
+  list-style: none;
+  transition: 0.3s;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  text-align: center;
+  outline: none;
+}
+
+.li.activo {
+  background-color: rgba(255, 0, 0, 0.7);
+  color: white;
+}
+
+.subcontainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bloque {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+}
+
+.bloque.activo {
+  opacity: 1;
+  z-index: 1;
+  transition: 0.5s;
+}
+
+.bloque.oculto {
+  display: none;
+}
+
+/* Contenedor de Puntos */
+.jugadoresContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2rem;
+}
+
+/* Secciones */
+.jugadorContainer {
+  width: 200px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.jugadorContainerDigital {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  align-items: center;
+}
+
+.display,
+.display1 {
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.jugadorContainer__button {
+  min-width: 60px;
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+  border-radius: 10px;
+  border: 1px solid white;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  margin-bottom: 8px;
+}
+
+.jugadorContainer__title {
+  color: white;
+}
+
+/* Botón de Reset */
+.container__button,
+.li {
+  margin: 1rem 0 0 0;
+  padding: 0.5rem 3rem;
+  cursor: pointer;
+  color: white;
+  background-color: var(--color-primario);
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.container__button {
+  background-color: red;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  width: 100px;
+  height: 100px;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px red;
+}
+
+.container__button:hover {
+  scale: 1.1;
+}
+
+.container__button:focus {
+  outline: none;
+}
+
+.container__button:active,
+.jugadorContainer__button:active {
+  transform: scale(0.95);
+}
+
+/* Fosforos */
+.grupo {
+  position: relative;
+  width: var(--dimensiones-grupo);
+  height: var(--dimensiones-grupo);
+  margin: 10px;
+  right: 20px;
+}
+
+img {
+  height: var(--dimensiones-grupo);
+}
+
+.fosforo-1 {
+  position: absolute;
+  transform: rotate(90deg);
+  top: -30px;
+  left: var(--left-horizontal);
+}
+
+.fosforo-2 {
+  position: absolute;
+  transform: rotate(180deg);
+  left: 65px;
+  top: var(--top-vertical);
+}
+
+.fosforo-3 {
+  position: absolute;
+  transform: rotate(270deg);
+  top: 32px;
+  left: var(--left-horizontal);
+}
+
+.fosforo-4 {
+  position: absolute;
+  left: 0px;
+  top: var(--top-vertical);
+}
+
+.fosforo-5 {
+  position: absolute;
+  transform: rotate(45deg);
+  left: 34px;
+  top: 0px;
+}
+
+/* Separador */
+.separador {
+  border: 1px solid var(--color-secundario);
+  width: 80px;
+  margin: 5px;
+}
+
+/* Modal Pop Up */
+.btn-close {
+  background-color: darkred;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.dialog {
+  border: none;
+  border-radius: 1rem;
+  height: 300px;
+  margin: auto;
+  width: max(350px, 600px);
+  opacity: 0;
+  transition: display 0.6s, overlay 0.6s, opacity 0.6s;
+  transition-behavior: allow-discrete;
+}
+
+.dialog[open] {
+  opacity: 1;
+}
+
+.dialog[open]::backdrop {
+  transform: translate(0);
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.15);
+  transform: translate(100%);
+  transition: transform 0.5s;
+}
+
+.dialog__texts {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dialog__title,
+.dialog__victoria {
+  font-size: 2rem;
+  font-weight: bolder;
+  text-align: center;
+  color: black;
+}
+
+.dialog__img {
+  width: min(50%, 300px);
+  display: block;
+  margin: auto;
+}
+
+/* Estilos para el contador de chicos mejorado */
+.chicos-container {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
+.chicos-display {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border: 1px solid #444;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.chico-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chico-label {
+  font-size: 0.9rem;
+  color: #ccc;
+  font-weight: 500;
+  text-align: center;
+}
+
+.chico-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 2px solid;
+  transition: all 0.3s ease;
+}
+
+.chico-nosotros {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  border-color: #60a5fa;
+  color: #e0f2fe;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.chico-ellos {
+  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  border-color: #f87171;
+  color: #fef2f2;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+}
+
+.chicos-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.partida-info {
+  font-size: 0.8rem;
+  color: #888;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.reset-partida-btn {
+  background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  color: #f3f4f6;
+  border: 1px solid #6b7280;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.reset-partida-btn:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reset-partida-btn:active {
+  transform: translateY(0);
+}
+
+/* Indicador de chico ganado */
+.chico-ganado-indicator {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  border: 2px solid #fcd34d;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+  animation: pulseGlow 2s infinite;
+}
+
+.chico-ganado-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #92400e;
+  margin-bottom: 0.5rem;
+}
+
+.chico-ganador-nombre {
+  font-size: 1rem;
+  color: #78350f;
+  font-weight: 600;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(251, 191, 36, 0.6);
+  }
+}
+
+/* Animaciones para los badges */
+.chico-badge.ganador {
+  animation: celebracion 1s ease-in-out;
+}
+
+@keyframes celebracion {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  75% {
+    transform: scale(1.2) rotate(-5deg);
+  }
+}
+
+/* Mejoras al modal existente */
+.dialog {
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  color: white;
+  border: 2px solid #4b5563;
+}
+
+.dialog__victoria {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-close {
+  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  border: 1px solid #f87171;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-close:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .chicos-display {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .chicos-info {
+    order: -1;
+    margin-bottom: 1rem;
+  }
+
+  .chico-team {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .chico-label {
+    font-size: 0.8rem;
+  }
+
+  .chico-badge {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .li {
+    font-size: 1rem;
+    padding: 0.5em 1.5em;
+  }
+  .jugadorContainer {
+    width: 150px;
+  }
+
+  .jugadorContainerDigital {
+    width: 150px;
+  }
+  .display,
+  .display1 {
+    width: 150px;
+    height: 100px;
+  }
+
+  .line-div-horizontal {
+    height: 300px;
+    top: -60px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .chicos-display {
+    padding: 0.8rem;
+  }
+
+  .chico-badge {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .reset-partida-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media (width <= 300px) {
+  .dialog {
+    height: 350px;
+  }
+}
