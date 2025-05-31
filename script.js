@@ -234,6 +234,9 @@ reset.addEventListener("click", () => {
   j1.reset()
   j2.reset()
   resetDigital()
+  chicos1 = 0;
+  chicos2 = 0;
+  actualizarChicos();
   ocultarIndicadorChico()
 })
 
