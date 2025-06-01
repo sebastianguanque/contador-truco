@@ -1,4 +1,6 @@
 // Clase Contador para el modo tradicional
+
+'use strict';
 class Contador {
   constructor(nombre, containerElement, cuentaInicial = 0, onGanarChicoCallback = null) {
     this.nombre = nombre
@@ -17,26 +19,27 @@ class Contador {
   }
 
   agregar(cantidad = 1) {
-    this.numero += cantidad
+  this.numero += cantidad
 
-    if (this.numero >= 30) {
-      this.numero = 0
-      this.actualizarCuenta()
+  if (this.numero >= 30) {
+    this.numero = 0
+    console.log(`[${this.nombre}] Puntos reiniciados a:`, this.numero)
+    this.actualizarCuenta()
 
-      if (typeof this.onGanarChicoCallback === "function") {
-        const nombreLower = this.nombre.toLowerCase()
-        if (nombreLower.includes("nosotros")) {
-          this.onGanarChicoCallback("j1")
-        } else if (nombreLower.includes("ellos")) {
-          this.onGanarChicoCallback("j2")
-        }
+    if (typeof this.onGanarChicoCallback === "function") {
+      const nombreLower = this.nombre.toLowerCase()
+      if (nombreLower.includes("nosotros")) {
+        this.onGanarChicoCallback("j1")
+      } else if (nombreLower.includes("ellos")) {
+        this.onGanarChicoCallback("j2")
       }
-
-      return
     }
 
-    this.actualizarCuenta()
+    return
   }
+
+  this.actualizarCuenta()
+}
 
   restar(cantidad = 1) {
     this.numero = Math.max(0, this.numero - cantidad)
@@ -48,37 +51,44 @@ class Contador {
     this.actualizarCuenta()
   }
 
-  actualizarCuenta() {
-    const grupoActuales = this.containerElement.querySelectorAll(".grupo")
-    const separadoresActuales = this.containerElement.querySelectorAll(".separador")
+   actualizarCuenta() {
+    const grupoActuales = this.containerElement.querySelectorAll(".grupo");
+    const separadoresActuales =
+      this.containerElement.querySelectorAll(".separador");
 
     if (grupoActuales.length >= 1) {
-      grupoActuales.forEach((grupo) => this.cuentaElement.removeChild(grupo))
-      separadoresActuales.forEach((separador) => this.cuentaElement.removeChild(separador))
+      grupoActuales.forEach((grupo) =>
+        this.cuentaElement.removeChild(grupo)
+      );
+      separadoresActuales.forEach((separador) =>
+        this.cuentaElement.removeChild(separador)
+      );
     }
 
-    let grupoActual
+    let grupoActual;
     for (let i = 0; i < this.numero; i++) {
       if (i % 5 === 0 && i < 30) {
-        grupoActual = document.createElement("div")
-        grupoActual.classList.add("grupo")
+        grupoActual = document.createElement("div");
+        grupoActual.classList.add("grupo");
 
         if (i % 15 === 0 && i !== 0) {
-          const separador = document.createElement("div")
-          separador.classList.add("separador")
-          this.cuentaElement.appendChild(separador)
+          const separador = document.createElement("div");
+          separador.classList.add("separador");
+          this.cuentaElement.appendChild(separador);
         }
 
-        this.cuentaElement.appendChild(grupoActual)
+        this.cuentaElement.appendChild(grupoActual);
       }
 
-      const nuevoFosforo = document.createElement("img")
-      nuevoFosforo.src = "public/img/fosforo.avif"
-      nuevoFosforo.classList.add("fosforo-" + ((i % 5) + 1))
+      const nuevoFosforo = document.createElement("img");
+      nuevoFosforo.src = "public/img/fosforo.avif";
+      nuevoFosforo.classList.add("fosforo-" + ((i % 5) + 1));
 
-      grupoActual.appendChild(nuevoFosforo)
+      grupoActual.appendChild(nuevoFosforo);
     }
   }
+
+
 }
 
 // Variables globales
@@ -90,7 +100,7 @@ let count1 = 0
 // Elementos DOM
 const modal = document.querySelector(".dialog")
 const btnClose = document.querySelector(".btn-close")
-const reset = document.getElementById("reset")
+const resetButton = document.getElementById("reset")
 const display = document.querySelector(".display")
 const incrementar = document.querySelector(".incrementar")
 const decrementar = document.querySelector(".decrementar")
@@ -133,10 +143,10 @@ function mostrarIndicadorChico(ganador) {
 
   indicador.style.display = "block"
 
-  // Ocultar después de 2 segundos
+  // Ocultar después de 3 segundos
   setTimeout(() => {
     ocultarIndicadorChico()
-  }, 2000)
+  }, 3000)
 }
 
 function ocultarIndicadorChico() {
@@ -163,22 +173,25 @@ function onGanarChico(ganador) {
       if (typeof confetti !== "undefined" && confetti.start) {
         confetti.start()
       }
-      resetJuego()
-    }, 1500)
+      reiniciarTodo()
+    }, 1000)
   }
 }
 
-function resetJuego() {
-  setTimeout(() => {
-    chicos1 = 0
-    chicos2 = 0
-    actualizarChicos()
-    j1.reset()
-    j2.reset()
-    resetDigital()
-    ocultarIndicadorChico()
-  }, 3000)
+function reiniciarTodo() {
+  j1.reset()
+  j2.reset()
+  chicos1 = 0;
+  chicos2 = 0;
+  resetDigital()
+  actualizarChicos();
+  ocultarIndicadorChico();
 }
+
+// Boton de reset
+resetButton.addEventListener("click", () => {
+  reiniciarTodo()
+})
 
 // Funciones para el contador digital
 function actualizarContador(contador) {
@@ -227,26 +240,11 @@ function stopConfetti() {
   }
 }
 
-// Event Listeners
-
-// Botones de reset
-reset.addEventListener("click", () => {
-  j1.reset()
-  j2.reset()
-  resetDigital()
-  chicos1 = 0;
-  chicos2 = 0;
-  actualizarChicos();
-  ocultarIndicadorChico()
-})
-
 // Modal
 btnClose.addEventListener("click", () => {
   modal.close()
   stopConfetti()
-  j1.reset()
-  j2.reset()
-  resetDigital()
+  reiniciarTodo()
 })
 
 // Contador digital

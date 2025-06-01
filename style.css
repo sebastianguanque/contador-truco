@@ -217,6 +217,15 @@ img {
   height: var(--dimensiones-grupo);
 }
 
+.fosforo {
+  width: 8px;
+  height: 30px;
+  background-color: brown;
+  margin: 2px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
 .fosforo-1 {
   position: absolute;
   transform: rotate(90deg);
