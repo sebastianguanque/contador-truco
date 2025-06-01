@@ -1,6 +1,6 @@
-// Clase Contador para el modo tradicional
-
 'use strict';
+
+// Clase Contador para el modo tradicional
 class Contador {
   constructor(nombre, containerElement, cuentaInicial = 0, onGanarChicoCallback = null) {
     this.nombre = nombre
@@ -18,27 +18,24 @@ class Contador {
     this.actualizarCuenta()
   }
 
-  agregar(cantidad = 1) {
+agregar(cantidad = 1) {
   this.numero += cantidad
 
-  if (this.numero >= 30) {
-    this.numero = 0
-    console.log(`[${this.nombre}] Puntos reiniciados a:`, this.numero)
-    this.actualizarCuenta()
-
-    if (typeof this.onGanarChicoCallback === "function") {
-      const nombreLower = this.nombre.toLowerCase()
-      if (nombreLower.includes("nosotros")) {
-        this.onGanarChicoCallback("j1")
-      } else if (nombreLower.includes("ellos")) {
-        this.onGanarChicoCallback("j2")
-      }
-    }
-
-    return
+  if (this.numero < 30) {
+    return this.actualizarCuenta()
   }
 
+  this.numero = 0
   this.actualizarCuenta()
+
+  if (typeof this.onGanarChicoCallback === "function") {
+    const nombreLower = this.nombre.toLowerCase()
+    if (nombreLower.includes("nosotros")) {
+      this.onGanarChicoCallback("j1")
+    } else if (nombreLower.includes("ellos")) {
+      this.onGanarChicoCallback("j2")
+    }
+  }
 }
 
   restar(cantidad = 1) {
@@ -163,6 +160,7 @@ function onGanarChico(ganador) {
 
   actualizarChicos()
   mostrarIndicadorChico(ganador)
+  resetPuntos() 
 
   if (chicos1 === 2 || chicos2 === 2) {
     const nombreGanador = chicos1 === 2 ? "¡Nosotros!" : "¡Ellos!"
@@ -179,11 +177,9 @@ function onGanarChico(ganador) {
 }
 
 function reiniciarTodo() {
-  j1.reset()
-  j2.reset()
+  resetPuntos();
   chicos1 = 0;
   chicos2 = 0;
-  resetDigital()
   actualizarChicos();
   ocultarIndicadorChico();
 }
@@ -193,6 +189,15 @@ resetButton.addEventListener("click", () => {
   reiniciarTodo()
 })
 
+function resetPuntos() {
+  j1.reset()
+  j2.reset()
+  count = 0
+  count1 = 0
+  display.textContent = "0"
+  display1.textContent = "0"
+}
+
 // Funciones para el contador digital
 function actualizarContador(contador) {
   const limiteInferior = 0
@@ -201,51 +206,6 @@ function actualizarContador(contador) {
   }
   return contador
 }
-
-function resetDigital() {
-  count = 0
-  count1 = 0
-  display.textContent = "0"
-  display1.textContent = "0"
-}
-
-// Función para el sistema de tabs
-let tabActivo = 0
-
-function mostrarTab(indice) {
-  if (indice < 0) {
-    indice = li.length - 1
-  } else if (indice >= li.length) {
-    indice = 0
-  }
-
-  li.forEach((cadaLi) => cadaLi.classList.remove("activo"))
-  bloque.forEach((cadaBloque, index) => {
-    cadaBloque.classList.remove("activo")
-    cadaBloque.setAttribute("aria-hidden", index !== indice)
-    cadaBloque.classList.add("oculto")
-  })
-
-  li[indice].classList.add("activo")
-  bloque[indice].classList.add("activo")
-  bloque[indice].classList.remove("oculto")
-
-  tabActivo = indice
-}
-
-// Función para detener confetti
-function stopConfetti() {
-  if (typeof confetti !== "undefined" && confetti.stop) {
-    confetti.stop()
-  }
-}
-
-// Modal
-btnClose.addEventListener("click", () => {
-  modal.close()
-  stopConfetti()
-  reiniciarTodo()
-})
 
 // Contador digital
 incrementar.addEventListener("click", () => {
@@ -292,6 +252,46 @@ li.forEach((cadaLi, i) => {
     mostrarTab(i)
   })
 })
+
+// Función para el sistema de tabs
+let tabActivo = 0
+
+function mostrarTab(indice) {
+  if (indice < 0) {
+    indice = li.length - 1
+  } else if (indice >= li.length) {
+    indice = 0
+  }
+
+  li.forEach((cadaLi) => cadaLi.classList.remove("activo"))
+  bloque.forEach((cadaBloque, index) => {
+    cadaBloque.classList.remove("activo")
+    cadaBloque.setAttribute("aria-hidden", index !== indice)
+    cadaBloque.classList.add("oculto")
+  })
+
+  li[indice].classList.add("activo")
+  bloque[indice].classList.add("activo")
+  bloque[indice].classList.remove("oculto")
+
+  tabActivo = indice
+}
+
+// Función para detener confetti
+function stopConfetti() {
+  if (typeof confetti !== "undefined" && confetti.stop) {
+    confetti.stop()
+  }
+}
+
+// Modal
+btnClose.addEventListener("click", () => {
+  modal.close()
+  stopConfetti()
+  reiniciarTodo()
+})
+
+
 
 // Eventos de teclado
 document.addEventListener("keydown", (event) => {

@@ -330,7 +330,7 @@ img {
   margin: auto;
 }
 
-/* Estilos para el contador de chicos mejorado */
+/* Estilos para el contador de chicos */
 .chicos-container {
   width: 100%;
   margin: 1rem 0;
@@ -431,6 +431,13 @@ img {
 
 /* Indicador de chico ganado */
 .chico-ganado-indicator {
+  display: none;
+  z-index: 3;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+
   background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
   border: 2px solid #fcd34d;
   border-radius: 12px;
