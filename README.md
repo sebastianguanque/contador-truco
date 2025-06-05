@@ -10,8 +10,6 @@ Un contador de puntos digital simple y fácil de usar para el popular juego de c
 
 ---
 
----
-
 ## 📚 Tabla de Contenidos
 
 - [Acerca del Proyecto](#-acerca-del-proyecto)
