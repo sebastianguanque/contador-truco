@@ -147,7 +147,7 @@ body {
 .display1 {
   background-color: var(--color-primario);
   color: var(--color-secundario);
-  width: clamp(120px, 25vw, 200px);
+  width: 180px;
 
   height: 150px;
   border-radius: 10px;
@@ -527,6 +527,11 @@ img {
 
 /* Responsive */
 @media screen and (max-width: 600px) {
+  .display,
+  .display1 {
+    width: 150px;
+  }
+
   .ul {
     width: 100%;
     gap: 0;
