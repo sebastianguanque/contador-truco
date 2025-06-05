@@ -4,6 +4,12 @@
 
 Un contador de puntos digital simple y fácil de usar para el popular juego de cartas argentino, el Truco. Elimina la necesidad de papel y lápiz, permitiendo a los jugadores llevar la cuenta de forma rápida y eficiente.
 
+### Link
+
+- Demo: [Link](https://sebastianguanque.github.io/contador-truco/)
+
+---
+
 ---
 
 ## 📚 Tabla de Contenidos
