@@ -31,7 +31,9 @@ class Contador {
     this.numero += cantidad;
 
     if (this.numero < 30) {
-      return this.actualizarCuenta();
+      this.actualizarCuenta();
+      guardarEstado(); // Guardar el estado después de cada cambio de puntos
+      return;
     }
 
     this.numero = 0;
@@ -45,16 +47,19 @@ class Contador {
         this.onGanarChicoCallback("j2");
       }
     }
+    guardarEstado(); // Guardar el estado después de ganar un chico (los puntos se resetean)
   }
 
   restar(cantidad = 1) {
     this.numero = Math.max(0, this.numero - cantidad);
     this.actualizarCuenta();
+    guardarEstado(); // Guardar el estado después de cada cambio de puntos
   }
 
   reset() {
     this.numero = 0;
     this.actualizarCuenta();
+    // No se llama guardarEstado aquí, ya que resetPuntos lo hará o se llama en reiniciarTodo
   }
 
   actualizarCuenta() {
@@ -96,8 +101,8 @@ class Contador {
 // Variables globales
 let chicos1 = 0;
 let chicos2 = 0;
-let count = 0;
-let count1 = 0;
+let count = 0; // Puntos del contador digital para "Nosotros"
+let count1 = 0; // Puntos del contador digital para "Ellos"
 
 // Elementos DOM
 const modal = document.querySelector(".dialog");
@@ -112,7 +117,7 @@ const decrementar2 = document.querySelector(".decrementar2");
 const li = document.querySelectorAll(".li");
 const bloque = document.querySelectorAll(".bloque");
 
-// Inicialización de contadores
+// Inicialización de contadores (se inicializan con 0, pero se cargarán con los datos de localStorage)
 const j1 = new Contador(
   "Nosotros",
   document.getElementById("jugador1"),
@@ -125,6 +130,47 @@ const j2 = new Contador(
   0,
   onGanarChico
 );
+
+// --- Funciones de LocalStorage ---
+
+function guardarEstado() {
+  const estado = {
+    puntosJ1: j1.numero,
+    puntosJ2: j2.numero,
+    chicosJ1: chicos1,
+    chicosJ2: chicos2,
+    puntosDigitalJ1: count,
+    puntosDigitalJ2: count1,
+    tabActivo: tabActivo, // Guardar el tab activo
+  };
+  localStorage.setItem("estadoTruco", JSON.stringify(estado));
+}
+
+function cargarEstado() {
+  const estadoGuardado = localStorage.getItem("estadoTruco");
+  if (estadoGuardado) {
+    const estado = JSON.parse(estadoGuardado);
+    j1.numero = estado.puntosJ1 || 0;
+    j2.numero = estado.puntosJ2 || 0;
+    chicos1 = estado.chicosJ1 || 0;
+    chicos2 = estado.chicosJ2 || 0;
+    count = estado.puntosDigitalJ1 || 0;
+    count1 = estado.puntosDigitalJ2 || 0;
+    tabActivo = estado.tabActivo || 0; // Cargar el tab activo
+
+    j1.actualizarCuenta();
+    j2.actualizarCuenta();
+    actualizarChicos();
+    display.textContent = count;
+    display1.textContent = count1;
+    mostrarTab(tabActivo); // Asegurarse de mostrar el tab correcto al cargar
+  } else {
+    // Si no hay estado guardado, inicializar con valores predeterminados
+    reiniciarTodo();
+  }
+}
+
+// --- Fin de Funciones de LocalStorage ---
 
 // Funciones para el contador de chicos
 function actualizarChicos() {
@@ -142,6 +188,8 @@ function actualizarChicos() {
     if (chicos1 > 0) badgeJ1.classList.add("ganador");
     if (chicos2 > 0) badgeJ2.classList.add("ganador");
   }, 100);
+
+  guardarEstado(); // Guardar el estado después de actualizar los chicos
 }
 
 function mostrarIndicadorChico(ganador) {
@@ -186,17 +234,20 @@ function onGanarChico(ganador) {
       if (typeof confetti !== "undefined" && confetti.start) {
         confetti.start();
       }
-      reiniciarTodo();
+      // No llamar reiniciarTodo aquí, ya que modal.close() lo hará
+      // La idea es que al cerrar el modal se reinicie, no al mostrarlo
     }, 1000);
   }
+  guardarEstado(); // Guardar el estado después de que se gana un chico
 }
 
 function reiniciarTodo() {
   resetPuntos();
   chicos1 = 0;
   chicos2 = 0;
-  actualizarChicos();
+  actualizarChicos(); // Esto ya llama a guardarEstado
   ocultarIndicadorChico();
+  guardarEstado(); // Asegurarse de guardar el estado después de un reinicio completo
 }
 
 // Boton de reset
@@ -211,6 +262,7 @@ function resetPuntos() {
   count1 = 0;
   display.textContent = "0";
   display1.textContent = "0";
+  guardarEstado(); // Guardar el estado después de resetear los puntos
 }
 
 // Funciones para el contador digital
@@ -235,11 +287,13 @@ incrementar.addEventListener("click", () => {
   } else {
     display.textContent = count;
   }
+  guardarEstado(); // Guardar el estado después de cada cambio en el contador digital
 });
 
 decrementar.addEventListener("click", () => {
   count = actualizarContador(count);
   display.textContent = count;
+  guardarEstado(); // Guardar el estado después de cada cambio en el contador digital
 });
 
 incrementar2.addEventListener("click", () => {
@@ -254,17 +308,20 @@ incrementar2.addEventListener("click", () => {
   } else {
     display1.textContent = count1;
   }
+  guardarEstado(); // Guardar el estado después de cada cambio en el contador digital
 });
 
 decrementar2.addEventListener("click", () => {
   count1 = actualizarContador(count1);
   display1.textContent = count1;
+  guardarEstado(); // Guardar el estado después de cada cambio en el contador digital
 });
 
 // Tabs
 li.forEach((cadaLi, i) => {
   cadaLi.addEventListener("click", () => {
     mostrarTab(i);
+    guardarEstado(); // Guardar el tab activo
   });
 });
 
@@ -310,11 +367,13 @@ btnClose.addEventListener("click", () => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight") {
     mostrarTab(tabActivo + 1);
+    guardarEstado(); // Guardar el tab activo
   } else if (event.key === "ArrowLeft") {
     mostrarTab(tabActivo - 1);
+    guardarEstado(); // Guardar el tab activo
   }
 });
 
-// Inicialización
-mostrarTab(tabActivo);
-actualizarChicos();
+// Inicialización: Cargar el estado guardado al inicio
+cargarEstado();
+// Las llamadas a actualizarChicos() y mostrarTab() se hacen dentro de cargarEstado()
