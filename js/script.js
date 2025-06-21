@@ -201,7 +201,6 @@ function mostrarIndicadorChico(ganador) {
 
   indicador.style.display = "block";
 
-  // Ocultar después de 3 segundos
   setTimeout(() => {
     ocultarIndicadorChico();
   }, 3000);
@@ -234,8 +233,6 @@ function onGanarChico(ganador) {
       if (typeof confetti !== "undefined" && confetti.start) {
         confetti.start();
       }
-      // No llamar reiniciarTodo aquí, ya que modal.close() lo hará
-      // La idea es que al cerrar el modal se reinicie, no al mostrarlo
     }, 1000);
   }
   guardarEstado(); // Guardar el estado después de que se gana un chico
@@ -245,7 +242,7 @@ function reiniciarTodo() {
   resetPuntos();
   chicos1 = 0;
   chicos2 = 0;
-  actualizarChicos(); // Esto ya llama a guardarEstado
+  actualizarChicos();
   ocultarIndicadorChico();
   guardarEstado(); // Asegurarse de guardar el estado después de un reinicio completo
 }
@@ -336,15 +333,45 @@ function mostrarTab(indice) {
   }
 
   li.forEach((cadaLi) => cadaLi.classList.remove("activo"));
+
   bloque.forEach((cadaBloque, index) => {
+    const esActivo = index === indice;
+
     cadaBloque.classList.remove("activo");
-    cadaBloque.setAttribute("aria-hidden", index !== indice);
-    cadaBloque.classList.add("oculto");
+    cadaBloque.classList.remove("oculto");
+
+    if (esActivo) {
+      cadaBloque.classList.add("activo");
+      cadaBloque.setAttribute("aria-hidden", "false");
+
+      cadaBloque
+        .querySelectorAll("button, a, input, select, [tabindex]")
+        .forEach((el) => {
+          if (el.dataset.originalTabindex !== undefined) {
+            el.tabIndex = parseInt(el.dataset.originalTabindex);
+            delete el.dataset.originalTabindex;
+          } else {
+            el.removeAttribute("tabindex"); // Remover tabindex si no fue modificado antes
+          }
+        });
+    } else {
+      cadaBloque.classList.add("oculto");
+      cadaBloque.setAttribute("aria-hidden", "true");
+
+      cadaBloque
+        .querySelectorAll(
+          'button, a, input, select, [tabindex]:not([tabindex="-1"])'
+        )
+        .forEach((el) => {
+          if (el.tabIndex !== -1) {
+            el.dataset.originalTabindex = el.tabIndex;
+          }
+          el.tabIndex = -1;
+        });
+    }
   });
 
   li[indice].classList.add("activo");
-  bloque[indice].classList.add("activo");
-  bloque[indice].classList.remove("oculto");
 
   tabActivo = indice;
 }
