@@ -12,15 +12,24 @@ Un contador de puntos digital simple y fácil de usar para el popular juego de c
 
 ## 📚 Tabla de Contenidos
 
-- [Acerca del Proyecto](#-acerca-del-proyecto)
-- [Características](#-características)
-- [Tecnologías Utilizadas](#-tecnologías-utilizadas)
-- [Primeros Pasos](#-primeros-pasos)
-  - [Prerrequisitos](#prerrequisitos)
-  - [Instalación](#instalación)
-- [Uso](#-uso)
-- [Licencia](#-licencia)
-- [Contacto](#-contacto)
+- [🃏 Contador de Truco](#-contador-de-truco)
+  - [📝 Descripción](#-descripción)
+    - [Link](#link)
+  - [📚 Tabla de Contenidos](#-tabla-de-contenidos)
+  - [💡 Acerca del Proyecto](#-acerca-del-proyecto)
+  - [✨ Características](#-características)
+  - [🛠️ Tecnologías Utilizadas](#️-tecnologías-utilizadas)
+  - [⚡ Rendimiento Web](#-rendimiento-web)
+  - [🚀 Primeros Pasos](#-primeros-pasos)
+    - [Prerrequisitos](#prerrequisitos)
+    - [Instalación](#instalación)
+  - [🏃 Uso](#-uso)
+    - [Screenshot](#screenshot)
+      - [Desktop](#desktop)
+      - [Mobile:](#mobile)
+  - [](#)
+  - [📄 Licencia](#-licencia)
+  - [📧 Contacto](#-contacto)
 
 ---
 
@@ -48,6 +57,14 @@ Esta aplicación web ofrece una solución digital, intuitiva y accesible desde c
 Este proyecto está construido con tecnologías web estándar, lo que lo hace ligero y fácil de ejecutar:
 
 - **Frontend:** HTML5, CSS3, JavaScript
+
+---
+
+## ⚡ Rendimiento Web
+
+La calidad y la eficiencia son fundamentales. A continuación, se presenta un análisis del rendimiento de la aplicación según las métricas de PageSpeed Insights:
+
+![PageSpeed Insights Score](./img/PageSpeed-score.png) Aspecto del informe de PageSpeed Insights con puntuaciones de Rendimiento 100, Accesibilidad 95, Prácticas recomendadas 100 y SEO 100.
 
 ---
 
