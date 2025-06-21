@@ -376,4 +376,3 @@ document.addEventListener("keydown", (event) => {
 
 // Inicialización: Cargar el estado guardado al inicio
 cargarEstado();
-// Las llamadas a actualizarChicos() y mostrarTab() se hacen dentro de cargarEstado()
